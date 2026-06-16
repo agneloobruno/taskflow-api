@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: task-management-api
+
+  datasource:
+    # Railway provides PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD
+    # Fallback to local dev values
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:taskflow}
+    username: ${PGUSER:${DB_USERNAME:postgres}}
+    password: ${PGPASSWORD:${DB_PASSWORD:postgres}}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration: ${JWT_EXPIRATION:86400000}
+
+server:
+  port: ${PORT:8080}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
