@@ -5,7 +5,7 @@ spring:
   datasource:
     # Railway provides PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD
     # Fallback to local dev values
-    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:taskflow}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:taskflow}?sslmode=require
     username: ${PGUSER:${DB_USERNAME:postgres}}
     password: ${PGPASSWORD:${DB_PASSWORD:postgres}}
     driver-class-name: org.postgresql.Driver
